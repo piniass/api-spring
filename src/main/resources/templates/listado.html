@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado personas</title>
+    <!-- Las rutas en Thymeleaf son relativas al directorio static -->
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+<table>
+    <caption>Listado de Zapatillas</caption>
+    <thead>
+    <tr>
+
+        <th>Id</th><th>Nombre</th><th>Precio</th><th>Color</th><th>Creado en</th><th>Actualizado</th><th>FotoBlob</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="zapatilla : ${listaZapatillas}">
+        <td th:text="${zapatilla.id}"></td>
+        <td th:text="${zapatilla.nombre}"></td>
+        <td th:text="${zapatilla.precio}"></td>
+        <td th:text="${zapatilla.color}"></td>
+        <td th:text="${zapatilla.created_at}"></td>
+        <td th:text="${zapatilla.updated_at}"></td>
+        <!--<td id="disco"><img th:src="@{/img/{img} (img=${zapatilla.imagen})}"
+                            alt="Imagen Ejemplo" /></td> !-->
+        <td id="blob"><img th:src="@{'/api/' + ${zapatilla.id} + '/foto'}"
+                           alt="Imagen Ejemplo" /></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
